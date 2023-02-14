@@ -122,7 +122,7 @@ public class Board extends JPanel {
                 }
 
                 if((screenData[i] & 4) != 0) {
-                    g2d.drawLine(x + BLOCK_SIZE-1, y, x + BLOCK_SIZE-1, y );
+                    g2d.drawLine(x + BLOCK_SIZE-1, y, x + BLOCK_SIZE-1, y + BLOCK_SIZE - 1);
                 }
 
                 if((screenData[i] & 8) != 0) {
@@ -130,12 +130,32 @@ public class Board extends JPanel {
                 }
 
                 if((screenData[i] & 16) != 0) {
-                    g2d.drawLine(x + 11, y + 11, 2, 2);
+                    g2d.setColor(dotColor);
+                    g2d.fillRect(x + 11, y + 11, 2, 2);
                 }
 
                 i++;
 
             }
         }
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        doDrawing(g);
+    }
+
+    private void doDrawing(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+
+        g2d.setColor(Color.black);
+        g2d.fillRect(0, 0, d.width, d.height);
+
+        drawMaze(g2d);
+        g2d.drawImage(ii, 5, 5, this);
+        Toolkit.getDefaultToolkit().sync();
+        g2d.dispose();
     }
 }
