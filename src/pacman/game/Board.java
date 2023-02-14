@@ -82,4 +82,60 @@ public class Board extends JPanel {
         dy = new int [4];
     }
 
+    @Override
+    public void addNotify() {
+        super.addNotify();
+
+        initGame();
+    }
+
+    public void initGame() {
+        pacsLeft = 3;
+        score = 0;
+        initLevel();
+        N_GHOSTS = 6;
+        currentSpeed = 3;
+    }
+
+    private void initLevel() {
+        int i;
+        for(i=0; i<N_BLOCKS*N_BLOCKS; i++) {
+            screenData[i] = levelData[i];
+        }
+    }
+
+    private void drawMaze (Graphics2D g2d){
+        short i = 0;
+        int x, y;
+
+        for(y=0; y < SCREEN_SIZE; y += BLOCK_SIZE){
+            for(x=0; x < SCREEN_SIZE; x += BLOCK_SIZE){
+                g2d.setColor(mazeColor);
+                g2d.setStroke(new BasicStroke(2));
+
+                if((screenData[i] & 1) != 0) {
+                    g2d.drawLine(x, y, x, y + BLOCK_SIZE-1);
+                }
+
+                if((screenData[i] & 2) != 0) {
+                    g2d.drawLine(x, y, x + BLOCK_SIZE-1, y );
+                }
+
+                if((screenData[i] & 4) != 0) {
+                    g2d.drawLine(x + BLOCK_SIZE-1, y, x + BLOCK_SIZE-1, y );
+                }
+
+                if((screenData[i] & 8) != 0) {
+                    g2d.drawLine(x, y + BLOCK_SIZE-1, x + BLOCK_SIZE-1, y + BLOCK_SIZE-1 );
+                }
+
+                if((screenData[i] & 16) != 0) {
+                    g2d.drawLine(x + 11, y + 11, 2, 2);
+                }
+
+                i++;
+
+            }
+        }
+    }
 }
