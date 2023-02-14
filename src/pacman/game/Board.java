@@ -28,7 +28,7 @@ public class Board extends JPanel {
     private int N_GHOSTS = 6;
     private int pacLeft, score;
     private int[] dx, dy;
-    private int[] ghost_x, ghost_y, ghostdx, ghostdy, ghostSpeed;
+    private int[] ghost_x, ghost_y, ghost_dx, ghost_dy, ghostSpeed;
 
     private int pacman_x, pacman_y, pacman_dx;
     private int req_dx, req_dy, view_dx, view_dy;
@@ -58,5 +58,27 @@ public class Board extends JPanel {
     private short[] screenData;
     private Timer timer;
 
+    public Board () {
+        initVariables();
+        initBoard();
+
+    }
+
+    private void initBoard(){
+        setFocusable(true);
+        setBackground(Color.black);
+    }
+
+    private void initVariables() {
+        screenData = new short [N_BLOCKS*N_BLOCKS];
+        mazeColor = new Color(5, 100, 5);
+        d = new Dimension(400, 400);
+        ghost_x = new int [MAX_GHOSTS];
+        ghost_dx = new int [MAX_GHOSTS];
+        ghost_y = new int [MAX_GHOSTS];
+        ghost_dy = new int [MAX_GHOSTS];
+        ghostSpeed = new int [MAX_GHOSTS];
+        dx = new int [4];
+    }
 
 }
