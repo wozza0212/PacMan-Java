@@ -26,7 +26,7 @@ public class Board extends JPanel {
     private int pacAnimDir = 1;
     private int pacmanAnimPos = 0;
     private int N_GHOSTS = 6;
-    private int pacLeft, score;
+    private int pacsLeft, score;
     private int[] dx, dy;
     private int[] ghost_x, ghost_y, ghost_dx, ghost_dy, ghostSpeed;
 
