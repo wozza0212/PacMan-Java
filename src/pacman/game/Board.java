@@ -79,6 +79,7 @@ public class Board extends JPanel {
         ghost_dy = new int [MAX_GHOSTS];
         ghostSpeed = new int [MAX_GHOSTS];
         dx = new int [4];
+        dy = new int [4];
     }
 
 }
